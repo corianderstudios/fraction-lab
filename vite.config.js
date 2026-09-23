@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // Content-Security-Policy injected into the production build only.
 // (Vite's dev server needs inline scripts for hot reload, so dev is left alone.)
@@ -13,29 +13,30 @@ const CSP = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
-].join('; ')
+].join("; ");
 
 function injectCsp() {
   return {
-    name: 'inject-csp',
-    apply: 'build',
+    name: "inject-csp",
+    apply: "build",
     transformIndexHtml(html) {
       return html.replace(
-        '<!-- CSP -->',
+        "<!-- CSP -->",
         `<meta http-equiv="Content-Security-Policy" content="${CSP}" />`,
-      )
+      );
     },
-  }
+  };
 }
 
 export default defineConfig({
   // Relative base + hash routing = the build works from any folder on any static host.
-  base: './',
+  base: "./",
   plugins: [react(), injectCsp()],
+  base: "/fraction-lab/",
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.js',
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.js",
     css: false,
   },
-})
+});
