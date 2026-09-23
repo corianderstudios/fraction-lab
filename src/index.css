@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Color tokens (space-separated RGB so Tailwind can add opacity).
+  Light: cool "graph paper" white, indigo ink, saffron fraction slices.
+  Dark: deep indigo slate — deliberately not black — with light text.
+*/
+@layer base {
+  :root {
+    --canvas: 247 248 244;      /* #F7F8F4 page background (a shade of white) */
+    --surface: 255 255 252;     /* #FFFFFC panels */
+    --ink: 35 40 58;            /* #23283A body text  (≈14:1 on canvas) */
+    --muted: 84 90 110;         /* #545A6E secondary  (≈6.5:1) */
+    --line: 218 221 212;        /* #DADDD4 borders */
+    --accent: 71 76 156;        /* #474C9C indigo buttons/links (≈7.4:1 with white) */
+    --accent-ink: 255 255 255;
+    --slice: 224 163 58;        /* #E0A33A saffron fraction pieces */
+    --progress: 246 211 135;    /* #F6D387 "in progress" highlight, used at 50% */
+    --good: 38 103 76;          /* #26674C calm green text */
+    --good-soft: 222 240 229;
+    --gentle: 140 84 24;        /* #8C5418 warm amber text for "not yet" (no red) */
+    --gentle-soft: 251 237 216;
+    --shadow: 40 44 70;
+  }
+
+  .dark {
+    --canvas: 38 43 69;         /* #262B45 deep indigo slate */
+    --surface: 49 55 88;        /* #313758 */
+    --ink: 238 240 247;         /* #EEF0F7 (≈11:1 on canvas) */
+    --muted: 196 201 222;       /* #C4C9DE (≈7:1) */
+    --line: 78 86 126;
+    --accent: 169 174 245;      /* #A9AEF5 periwinkle */
+    --accent-ink: 30 34 58;
+    --slice: 232 181 90;
+    --progress: 125 102 58;     /* blends to a muted amber at 50% */
+    --good: 144 214 172;
+    --good-soft: 44 78 74;
+    --gentle: 240 192 134;
+    --gentle-soft: 86 68 62;
+    --shadow: 8 10 24;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif text-ink;
+    line-height: 1.2;
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: rgb(var(--progress) / 0.7);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-accent-ink hover:bg-accent/90;
+  }
+  .btn-secondary {
+    @apply btn border border-line bg-surface text-ink hover:bg-line/40;
+  }
+  .btn-done {
+    @apply btn border border-good/50 bg-good-soft text-good hover:bg-good-soft/70;
+  }
+  .panel {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border border-line text-ink hover:bg-line/40;
+  }
+  .frac-input {
+    @apply w-16 rounded-lg border-2 border-line bg-canvas px-2 py-1.5 text-center font-serif text-xl tabular-nums text-ink;
+  }
+  .frac-input:focus {
+    @apply border-accent outline-none;
+  }
+  .frac-input[aria-invalid='true'] {
+    @apply border-gentle;
+  }
+  .steps {
+    @apply mt-3 list-decimal space-y-1.5 pl-6 text-[0.975rem] leading-relaxed marker:font-bold marker:text-muted;
+  }
+  /* Lesson page: fill the space under the 4rem sticky nav from 768px up. */
+  @media (min-width: 768px) {
+    .lesson-viewport {
+      height: calc(100vh - 4rem);   /* fallback for older browsers */
+      height: calc(100dvh - 4rem);
+    }
+    /* Each column scrolls on its own. Overflow is never hidden. */
+    .scroll-column {
+      /* relative: keeps absolutely positioned children (screen-reader text, tips)
+         inside the column instead of stretching the page body */
+      position: relative;
+      flex: 1 1 0%;
+      min-width: 0;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgb(var(--line)) transparent;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
