@@ -36,7 +36,7 @@ export default function SectionFooter({ sectionId, sticky = false }) {
     );
   }
 
-  const showProgressButtons = sectionId !== "glossary" && !complete;
+  const showProgressButtons = sectionId !== "glossary";
 
   return (
     <div
