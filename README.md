@@ -1,4 +1,4 @@
-# FractionLab
+# [FractionLab](https://corianderstudios.github.io/fraction-lab/)
 
 A React + Vite app that teaches how fractions work: basics, adding, subtracting, multiplying and dividing. Each lesson has an explanation, worked examples, a playground and clickable memory tips. A games section asks up to ten adaptive questions per skill.
 
