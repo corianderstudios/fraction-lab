@@ -29,8 +29,6 @@ function injectCsp() {
 }
 
 export default defineConfig({
-  // Relative base + hash routing = the build works from any folder on any static host.
-  base: "./",
   plugins: [react(), injectCsp()],
   base: "/fraction-lab/",
   test: {
