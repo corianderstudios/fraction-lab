@@ -2,6 +2,13 @@
 
 A React + Vite app that teaches how fractions work: basics, adding, subtracting, multiplying and dividing. Each lesson has an explanation, worked examples, a playground and clickable memory tips. A games section asks up to ten adaptive questions per skill.
 
+## Development Process
+
+This repository was **vibe coded** utilizing AI agents under human supervision.
+
+- **Primary Driver:** `Claude Code`
+- **Human Vibe Level:** _Collaborative Vibe_ (AI generated the heavy lifting, human reviewed architectures and edge cases).
+
 ## Run it
 
 ```bash
@@ -13,15 +20,6 @@ npm run preview    # serve the production build locally
 ```
 
 Node 18.18 or newer.
-
-## Hosting
-
-The build is a plain static folder (`dist/`). It uses hash routing (`#/learn/add`) and a relative base path, so it works on any static host, in any sub-folder, with no rewrite rules.
-
-- **GitHub Pages:** push to `main`. `.github/workflows/deploy.yml` runs the tests, builds, and deploys. (Enable Pages → Source: GitHub Actions in the repo settings.)
-- **Netlify / Cloudflare Pages:** build command `npm run build`, publish directory `dist`. Security headers come from `public/_headers`.
-- **Vercel:** import the repo; `vercel.json` adds the security headers.
-- **Anywhere else:** upload the contents of `dist/`.
 
 ## How it's organised
 
