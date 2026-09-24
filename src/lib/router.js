@@ -50,6 +50,6 @@ export function parseRoute(rawPath) {
 export function sectionIdForRoute(route) {
   if (route.name === "lesson") return route.id;
   if (route.name === "games" || route.name === "game") return "games";
-  if (route.name === "glossery") return "glossery";
+  if (route.name === "glossary") return "glossary";
   return null;
 }

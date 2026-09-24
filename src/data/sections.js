@@ -48,10 +48,15 @@ export const SECTIONS = [
     navLabel: "Glossary",
     path: "/glossary",
     blurb: "Plain definitions of fraction words.",
+    trackProgress: false,
   },
 ];
 
-export const SECTION_IDS = SECTIONS.map((s) => s.id);
+export const TRACKED_SECTIONS = SECTIONS.filter(
+  (s) => s.trackProgress !== false,
+);
+export const SECTION_IDS = TRACKED_SECTIONS.map((s) => s.id);
+export const isTracked = (id) => SECTION_IDS.includes(id);
 export const getSection = (id) => SECTIONS.find((s) => s.id === id) ?? null;
 export function getNextSection(id) {
   const i = SECTIONS.findIndex((s) => s.id === id);
