@@ -191,7 +191,7 @@ describe("App", () => {
     expect(
       within(mainNav()).getByRole("link", { name: /adding \(in progress\)/i }),
     ).toHaveClass("bg-progress/50");
-    expect(screen.getByText("1 of 7 sections complete")).toBeInTheDocument();
+    expect(screen.getByText("1 of 6 sections complete")).toBeInTheDocument();
   });
 
   it("ignores tampered progress data", () => {
@@ -200,7 +200,7 @@ describe("App", () => {
       JSON.stringify({ completed: { "<script>": true, add: "yes" } }),
     );
     render(<App />);
-    expect(screen.getByText("0 of 7 sections complete")).toBeInTheDocument();
+    expect(screen.getByText("0 of 6 sections complete")).toBeInTheDocument();
   });
 
   it("opens and closes the mobile menu", async () => {
