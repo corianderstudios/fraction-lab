@@ -28,7 +28,7 @@ function titleFor(route) {
     return `${getSection(route.id).title} | FractionLab`;
   if (route.name === "games") return "Practice Games | FractionLab";
   if (route.name === "game") return `${OPS[route.op].name} game | FractionLab`;
-  if (route.name === "glossery") return `Glossery | FractionLab`;
+  if (route.name === "glossary") return `Glossary | FractionLab`;
   return "Page not found | FractionLab";
 }
 
